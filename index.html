@@ -921,27 +921,17 @@
       })
     };
 
-    const dimAtomMaterials = {
-      corner: new THREE.MeshStandardMaterial({
-        color: 0x172323,
-        roughness: 0.68,
-        metalness: 0.02
-      }),
-      face: new THREE.MeshStandardMaterial({
-        color: 0x2a1d1a,
-        roughness: 0.7,
-        metalness: 0.02
-      }),
-      body: new THREE.MeshStandardMaterial({
-        color: 0x2a1d1a,
-        roughness: 0.7,
-        metalness: 0.02
-      }),
-      inner: new THREE.MeshStandardMaterial({
-        color: 0x2c2618,
-        roughness: 0.7,
-        metalness: 0.02
-      })
+    const invisibleAtomMaterial = new THREE.MeshBasicMaterial({
+      transparent: true,
+      opacity: 0,
+      depthWrite: false
+    });
+
+    const wireframeAtomMaterials = {
+      corner: new THREE.MeshBasicMaterial({ color: 0x138a8a, wireframe: true, transparent: true, opacity: 0.75 }),
+      face:   new THREE.MeshBasicMaterial({ color: 0xd45f48, wireframe: true, transparent: true, opacity: 0.75 }),
+      body:   new THREE.MeshBasicMaterial({ color: 0xd45f48, wireframe: true, transparent: true, opacity: 0.75 }),
+      inner:  new THREE.MeshBasicMaterial({ color: 0xc39021, wireframe: true, transparent: true, opacity: 0.75 })
     };
 
     const voidGeometry = new THREE.SphereGeometry(1, 24, 16);
@@ -1041,7 +1031,7 @@
     }
 
     function getAtomMaterial(materialName) {
-      return hasActiveVoidHighlight() ? dimAtomMaterials[materialName] : atomMaterials[materialName];
+      return hasActiveVoidHighlight() ? invisibleAtomMaterial : atomMaterials[materialName];
     }
 
     function addAtom(parent, position, radius, materialName, crystalKey) {
@@ -1052,6 +1042,15 @@
       atom.receiveShadow = true;
       atom.userData.crystal = crystalKey;
       parent.add(atom);
+
+      if (hasActiveVoidHighlight()) {
+        const outline = new THREE.Mesh(atomGeometry, wireframeAtomMaterials[materialName]);
+        outline.position.copy(position);
+        outline.scale.setScalar(radius);
+        outline.userData.crystal = crystalKey;
+        parent.add(outline);
+      }
+
       return atom;
     }
 
