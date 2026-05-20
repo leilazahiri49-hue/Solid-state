@@ -1378,7 +1378,7 @@
       addAtom(parent, new THREE.Vector3(0, -height / 2, 0), atomRadius * 1.05, "face", crystal);
 
       const middleRadius = side / Math.sqrt(3);
-      [Math.PI / 3, Math.PI, (5 * Math.PI) / 3].forEach((angle) => {
+      [Math.PI / 6, (5 * Math.PI) / 6, (3 * Math.PI) / 2].forEach((angle) => {
         addAtom(
           parent,
           new THREE.Vector3(middleRadius * Math.cos(angle), 0, middleRadius * Math.sin(angle)),
@@ -1494,7 +1494,7 @@
             addUniqueAtom(parent, registry, new THREE.Vector3(centerX, centerY - height / 2, centerZ), 0.084, "face", "hcp");
 
             const middleRadius = side / Math.sqrt(3);
-            [Math.PI / 3, Math.PI, (5 * Math.PI) / 3].forEach((angle) => {
+            [Math.PI / 6, (5 * Math.PI) / 6, (3 * Math.PI) / 2].forEach((angle) => {
               addUniqueAtom(
                 parent,
                 registry,
