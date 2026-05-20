@@ -54,6 +54,37 @@
     .scene {
       position: absolute;
       inset: 0;
+      z-index: 2;
+    }
+
+    .watermark {
+      position: fixed;
+      inset: -60%;
+      z-index: 1;
+      pointer-events: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      transform: rotate(-32deg);
+      overflow: hidden;
+      opacity: 1;
+    }
+
+    .watermark-row {
+      display: flex;
+      justify-content: space-around;
+      white-space: nowrap;
+      color: #2d6060;
+      font-size: 1.85rem;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.22;
+      user-select: none;
+    }
+
+    .watermark-row:nth-child(even) {
+      margin-left: 90px;
     }
 
     .scene canvas {
@@ -606,6 +637,16 @@
   </style>
 </head>
 <body>
+  <div class="watermark" aria-hidden="true">
+    <div class="watermark-row"><span>Parth Patil</span><span>Parth Patil</span><span>Parth Patil</span><span>Parth Patil</span></div>
+    <div class="watermark-row"><span>Parth Patil</span><span>Parth Patil</span><span>Parth Patil</span><span>Parth Patil</span></div>
+    <div class="watermark-row"><span>Parth Patil</span><span>Parth Patil</span><span>Parth Patil</span><span>Parth Patil</span></div>
+    <div class="watermark-row"><span>Parth Patil</span><span>Parth Patil</span><span>Parth Patil</span><span>Parth Patil</span></div>
+    <div class="watermark-row"><span>Parth Patil</span><span>Parth Patil</span><span>Parth Patil</span><span>Parth Patil</span></div>
+    <div class="watermark-row"><span>Parth Patil</span><span>Parth Patil</span><span>Parth Patil</span><span>Parth Patil</span></div>
+    <div class="watermark-row"><span>Parth Patil</span><span>Parth Patil</span><span>Parth Patil</span><span>Parth Patil</span></div>
+    <div class="watermark-row"><span>Parth Patil</span><span>Parth Patil</span><span>Parth Patil</span><span>Parth Patil</span></div>
+  </div>
   <main class="app">
     <section class="scene" id="scene"></section>
 
